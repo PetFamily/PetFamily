@@ -8,7 +8,7 @@
     "dev-windows": "nodemon ./bin/www"
   },
   "dependencies": {
-    "bcrypt": "^3.0.0",
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",
@@ -18,7 +18,7 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "hbs": "^4.0.1",
-    "mongoose": "^5.2.10",
+    "mongoose": "^5.3.13",
     "morgan": "^1.9.0",
     "node-sass-middleware": "^0.11.0",
     "passport": "^0.4.0",
@@ -27,5 +27,20 @@
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
-  }
+  },
+  "description": "Second Ironhack Project",
+  "main": "app.js",
+  "bin": {
+    "petfamily": "seeds.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PetFamily/PetFamily.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PetFamily/PetFamily/issues"
+  },
+  "homepage": "https://github.com/PetFamily/PetFamily#readme"
 }

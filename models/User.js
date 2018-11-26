@@ -6,8 +6,16 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   availability: { type: String, required: true },
-  pricePerHour: {type: String, required: true },
- type: { type: String, required: true, enum: ['Adoption', 'Babysitting', 'Both', 'Other'] }
+  pricePerHour: { type: String, required: true },
+  userType: { type: String, enum: ["Adoption Center", "Individual"] },
+  description: { type: String, required: true },
+  address:
+  {
+    lat: Number,
+    lng: Number,
+    address: { type: String, required: true, unique: true }
+  },
+  typeActivity: { type: String, required: true, enum: ['Adoption', 'Finder', 'Babysitting', 'Both'] }
 }, {
     timestamps: {
       createdAt: 'created_at',
