@@ -9,6 +9,7 @@ const userSchema = new Schema({
   pricePerHour: { type: String, required: true },
   userType: { type: String, enum: ["Adoption Center", "Individual"] },
   description: { type: String, required: true },
+  userLocationName:{type: String, required:true},
   address:
   {
     lat: Number,
