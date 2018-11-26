@@ -14,12 +14,7 @@ let users = [
     username: "alice",
     password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
     email: "alice@gmail.com",
-    availability: "Weekend, 9am-5pm",
-    pricePerHour: "Free",
-    userType: "Individual",
-    typeActivity: "Babysitting",
-    description: "nacido en feb",
-    address: { address: "La chopera" }
+    userType: "Individual"
   }
 ]
 
@@ -36,6 +31,7 @@ mongoose
   .connect('mongodb://localhost/petfamily', { useNewUrlParser: true })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+    return User.collection.drop();
   })
   .catch(err => {
     console.error('Error connecting to mongo', err)

@@ -1,5 +1,6 @@
 const express = require('express');
 const mainRouter = express.Router();
+const User = require("../models/User")
 
 mainRouter.get('/', (req, res, next) => {
   res.render('main');
@@ -13,6 +14,13 @@ mainRouter.post('/new', (req, res, next) => {
     { _id: req.params._id },
     { $set:{address}})
   res.redirect('/main');
+});
+
+mainRouter.get('/:id', (req, res, next) => {
+  User.findById(req.params.id).then((user)=>{
+    res.render('user-profile', {user});
+
+  })
 });
 
 
