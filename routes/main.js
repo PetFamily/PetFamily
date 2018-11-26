@@ -9,6 +9,9 @@ mainRouter.get('/new', (req, res, next) => {
 });
 
 mainRouter.post('/new', (req, res, next) => {
+  User.findByIdAndUpdate(
+    { _id: req.params._id },
+    { $set:{address}})
   res.redirect('/main');
 });
 
