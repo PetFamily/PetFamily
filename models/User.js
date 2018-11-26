@@ -13,8 +13,7 @@ const userSchema = new Schema({
   address:
   {
     lat: Number,
-    lng: Number,
-    address: { type: String, required: true, unique: true }
+    lng: Number
   },
   typeActivity: { type: String, required: true, enum: ['Adoption', 'Finder', 'Babysitting', 'Both'] }
 }, {
