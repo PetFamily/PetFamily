@@ -16,6 +16,10 @@ function startMap() {
 
         map.setCenter(user_location);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e2140bc6746a1018c38e0bbf453a74f26f535928
         const youAreHere = new google.maps.Marker({
           position: {
             lat: user_location.lat,
