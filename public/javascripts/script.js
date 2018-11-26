@@ -2,7 +2,7 @@ function startMap() {
 
   const map = new google.maps.Map(document.getElementById('map'),
     {
-      zoom: 5,
+      zoom: 10,
       center: geolocation()
     }
   );
