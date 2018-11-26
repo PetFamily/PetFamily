@@ -9,8 +9,6 @@ mainRouter.get('/new', (req, res, next) => {
 });
 
 mainRouter.post('/new', (req, res, next) => {
-
-
   res.redirect('/main');
 });
 

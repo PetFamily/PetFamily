@@ -1,18 +1,38 @@
-document.addEventListener('DOMContentLoaded', () => {
-
-  console.log('IronGenerator JS imported successfully!');
-
-}, false);
-
 function startMap() {
 
-  var coordinates = {
-    lat: 40.416775,
-    lng: -3.703790
-  };
-  var map = new google.maps.Map(
-    document.getElementById('map'), { zoom: 10, center: coordinates });
-  var marker = new google.maps.Marker({ position: coordinates, map: map });
+  const map = new google.maps.Map(document.getElementById('map'),
+    {
+      zoom: 5,
+      center: geolocation()
+    }
+  );
+  function geolocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        const user_location = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        map.setCenter(user_location);
+
+
+        const youAreHere = new google.maps.Marker({
+          position: {
+            lat: user_location.lat,
+            lng: user_location.lng
+          },
+          map: map,
+          title: "You are here."
+        });
+
+      }, function () {
+        console.log('Error in the geolocation service.');
+      });
+    } else {
+      console.log('Browser does not support geolocation.');
+    }
+  }
 }
 
 startMap();
