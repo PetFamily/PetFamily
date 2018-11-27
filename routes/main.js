@@ -5,13 +5,27 @@ const checkComplete = require('../middleware/checkComplete');
 
 
 
-mainRouter.get('/', checkComplete(),(req, res, next) => {
-  User.findById(req.params.id)
+mainRouter.get('/', checkComplete(), (req, res, next) => {
+  console.log(req.user.centerDescription)
+  User.findOneAndUpdate(
+    { username: req.user.username },
+    {
+      $set: {
+        availability: req.user.availability,
+        pricePerHour: req.user.pricePerHour,
+        centerDescription: req.user.centerDescription,
+        typeActivity: req.user.typeActivity
+      }
+    }, {
+      new: true
+    }
+  )
     .then((user) => {
       res.render('main');
     })
+    .catch(err => console.log(err))
 });
-mainRouter.get('/new',(req, res, next) => {
+mainRouter.get('/new', (req, res, next) => {
   res.render('userLocation');
 });
 

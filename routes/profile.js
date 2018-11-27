@@ -8,14 +8,13 @@ profileRouter.get('/', (req, res, next) => {
 });
 
 profileRouter.post('/', (req, res, next) => {
-  const { availability, pricePerHour, description, typeActivity } = req.body;
+  const { availability, pricePerHour, centerDescription, typeActivity } = req.body;
 
-  const newProfile = new User({ availability, pricePerHour, description, typeActivity })
-  User.findByIdAndUpdate({ _id: req.user._id }, { $set: { availability, pricePerHour, description, typeActivity } })
+  User.findByIdAndUpdate({ _id: req.user._id }, { $set: { availability, pricePerHour, centerDescription, typeActivity } }, { new: true })
 
     .then((user) => {
       console.log("User added properly")
-      res.redirect('main', { user });
+      res.redirect('/main');
     })
     .catch(error => {
       console.log("User NOT ADDED");
@@ -25,8 +24,8 @@ profileRouter.post('/', (req, res, next) => {
 profileRouter.get('/user', (req, res, next) => {
   // User.findById(req.user._id)
   //   .then((user) => {
-      res.render('user-profile');
-    // })
+  res.render('user-profile');
+  // })
 
 });
 
