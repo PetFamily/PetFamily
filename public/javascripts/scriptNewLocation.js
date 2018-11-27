@@ -1,8 +1,10 @@
+let marker;
 function startMap() {
+  let storeMarkers;
 
   const map = new google.maps.Map(document.getElementById('map'),
     {
-      zoom: 15,
+      zoom: 13,
       center: geolocation()
     }
   );
@@ -16,14 +18,13 @@ function startMap() {
 
         map.setCenter(user_location);
 
-
         const youAreHere = new google.maps.Marker({
           position: {
             lat: user_location.lat,
             lng: user_location.lng
           },
           map: map,
-          title: "You are here."
+          title: "You are here"
         });
 
       }, function () {
@@ -34,15 +35,31 @@ function startMap() {
     }
   }
   google.maps.event.addDomListener(map, 'click', function (event) {
-    const newLocation = new google.maps.Marker({
+    console.log(event.latLng.lat(), event.latLng.lng())
+    if (marker && marker.setMap) {
+      marker.setMap(null)
+    }
+    marker = new google.maps.Marker({
+
       position: {
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
       },
       map: map,
-      title: "New Location."
-    })
+      title: req.user.userLocationName
+    });
+    // const removeMarkers = google.maps.event.removeListener(newMarker);
   });
+
+  // const newLocation = new google.maps.Marker({
+
+  //   position: {
+  //     lat: event.latLng.lat(),
+  //     lng: event.latLng.lng(),
+  //   },
+  //   map: map,
+  //   title: "New Location"
+  // });
 }
 
 startMap();

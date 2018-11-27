@@ -2,7 +2,7 @@ function startMap() {
 
   const map = new google.maps.Map(document.getElementById('map'),
     {
-      zoom: 15,
+      zoom: 13,
       center: geolocation()
     }
   );
@@ -16,14 +16,13 @@ function startMap() {
 
         map.setCenter(user_location);
 
-
         const youAreHere = new google.maps.Marker({
           position: {
             lat: user_location.lat,
             lng: user_location.lng
           },
           map: map,
-          title: "You are here."
+          title: "You are here"
         });
 
       }, function () {
@@ -33,16 +32,6 @@ function startMap() {
       console.log('Browser does not support geolocation.');
     }
   }
-  // google.maps.event.addDomListener(map, 'click', function () {
-  //   const newLocation = new google.maps.Marker({
-  //     position: {
-  //       lat: 50,
-  //       lng: 45,
-  //     },
-  //     map: map,
-  //     title: "New Location."
-  //   })
-  // });
 }
 
 startMap();
