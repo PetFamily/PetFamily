@@ -3,9 +3,10 @@ const mainRouter = express.Router();
 const User = require("../models/User")
 
 mainRouter.get('/', (req, res, next) => {
-  User.findById(req.params.id).then((user) => {
-    res.render('main', { user });
-  })
+  User.findById(req.params.id)
+    .then((user) => {
+      res.render('main', { user });
+    })
 });
 mainRouter.get('/new', (req, res, next) => {
   res.render('userLocation');
