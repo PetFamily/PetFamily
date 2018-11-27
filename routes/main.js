@@ -2,8 +2,8 @@ const express = require("express");
 const mainRouter = express.Router();
 const User = require("../models/User");
 const Pets = require("../models/Pet");
-const checkComplete = require("../middleware/checkComplete")
-const uploadCloud = require('../config/cloudinary')
+const checkComplete = require("../middleware/checkComplete");
+const uploadCloud = require("../config/cloudinary");
 
 mainRouter.get("/", checkComplete(), (req, res, next) => {
   console.log(req.user.centerDescription);
@@ -54,7 +54,7 @@ mainRouter.get("/pets", (req, res, next) => {
   res.render("petForm");
 });
 
-mainRouter.post("/pets", uploadCloud.single('petPhoto'),  (req, res, next) => {
+mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
   const {
     name,
     description,
