@@ -5,7 +5,7 @@ const User = require("../models/User")
 mainRouter.get('/', (req, res, next) => {
   User.findById(req.params.id)
     .then((user) => {
-      res.render('main', { user });
+      res.render('main');
     })
 });
 mainRouter.get('/new', (req, res, next) => {

@@ -14,7 +14,11 @@ let users = [
     username: "alice",
     password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
     email: "alice@gmail.com",
-    userType: "Individual"
+    userType: "Individual",
+    availability: "9am a 15pm",
+    pricePerHour: "15€",
+    typeActivity: "Finder",
+    centerDescription: "Grandes espacios para jugar"
   }
 ]
 
