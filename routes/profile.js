@@ -2,6 +2,7 @@ const express = require('express');
 const profileRouter = express.Router();
 const User = require("../models/User");
 
+
 profileRouter.get('/', (req, res, next) => {
   res.render('profile');
 });
@@ -21,11 +22,11 @@ profileRouter.post('/', (req, res, next) => {
     })
 });
 
-profileRouter.get('/:id', (req, res, next) => {
-  User.findById(req.params._id)
-    .then((user) => {
-      res.render('user-profile', { user });
-    })
+profileRouter.get('/user', (req, res, next) => {
+  // User.findById(req.user._id)
+  //   .then((user) => {
+      res.render('user-profile');
+    // })
 
 });
 
