@@ -26,9 +26,7 @@ profileRouter.get('/user', (req, res, next) => {
   //   .then((user) => {
   res.render('user-profile');
   // })
-
 });
-
 
 
 

@@ -1,12 +1,12 @@
-const express = require('express');
+const express = require("express");
 const mainRouter = express.Router();
-const User = require("../models/User")
-const checkComplete = require('../middleware/checkComplete');
+const User = require("../models/User");
+const Pets = require("../models/Pet");
+const checkComplete = require("../middleware/checkComplete")
+const uploadCloud = require('../config/cloudinary')
 
-
-
-mainRouter.get('/', checkComplete(), (req, res, next) => {
-  console.log(req.user.centerDescription)
+mainRouter.get("/", checkComplete(), (req, res, next) => {
+  console.log(req.user.centerDescription);
   User.findOneAndUpdate(
     { username: req.user.username },
     {
@@ -16,21 +16,22 @@ mainRouter.get('/', checkComplete(), (req, res, next) => {
         centerDescription: req.user.centerDescription,
         typeActivity: req.user.typeActivity
       }
-    }, {
+    },
+    {
       new: true
     }
   )
-    .then((user) => {
-      res.render('main');
+    .then(user => {
+      res.render("main");
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
 });
-mainRouter.get('/new', (req, res, next) => {
-  res.render('userLocation');
+mainRouter.get("/new", (req, res, next) => {
+  res.render("userLocation");
 });
 
-mainRouter.post('/new', (req, res, next) => {
-  console.log(req.body)
+mainRouter.post("/new", (req, res, next) => {
+  console.log(req.body);
   User.findByIdAndUpdate(
     { _id: req.user._id },
     {
@@ -41,19 +42,54 @@ mainRouter.post('/new', (req, res, next) => {
         },
         userLocationName: req.body.userLocationName
       }
-    }, { new: true })
-    .then(user => {
-      console.log(user);
-      res.redirect('/main');
+    },
+    { new: true }
+  ).then(user => {
+    console.log(user);
+    res.redirect("/main");
+  });
+});
+
+mainRouter.get("/pets", (req, res, next) => {
+  res.render("petForm");
+});
+
+mainRouter.post("/pets", uploadCloud.single('petPhoto'),  (req, res, next) => {
+  const {
+    name,
+    description,
+    age,
+    notes,
+    type,
+    vaccunationCompleted
+  } = req.body;
+  console.log(req.body, req.file);
+  const petPhoto = req.file.originalname;
+  const petPath = req.file.url;
+  const newPet = new Pets({
+    name,
+    description,
+    age,
+    notes,
+    type,
+    vaccunationCompleted,
+    petPhoto,
+    petPath
+  });
+  newPet
+    .save()
+    .then(() => {
+      res.redirect("/");
     })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
-mainRouter.get('/:id', (req, res, next) => {
-  User.findById(req.params.id).then((user) => {
-    res.render('user-profile', { user });
-
-  })
+mainRouter.get("/:id", (req, res, next) => {
+  User.findById(req.params.id).then(user => {
+    res.render("user-profile", { user });
+  });
 });
-
 
 module.exports = mainRouter;
