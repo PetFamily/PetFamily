@@ -45,8 +45,6 @@ function startMap() {
 function saveCoordinatesInDOM(lat, lng) {
   document.querySelector("#lat").value = lat
   document.querySelector("#lng").value = lng
-  console.log(document.querySelector("#lat"))
+  // console.log(document.querySelector("#lat"))
 }
 startMap();
-
-saveCoordinatesInDOM()
