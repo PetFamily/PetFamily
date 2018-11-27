@@ -18,15 +18,6 @@ function startMap() {
 
         map.setCenter(user_location);
 
-        const youAreHere = new google.maps.Marker({
-          position: {
-            lat: user_location.lat,
-            lng: user_location.lng
-          },
-          map: map,
-          title: "You are here"
-        });
-
       }, function () {
         console.log('Error in the geolocation service.');
       });
@@ -34,32 +25,28 @@ function startMap() {
       console.log('Browser does not support geolocation.');
     }
   }
+
   google.maps.event.addDomListener(map, 'click', function (event) {
     console.log(event.latLng.lat(), event.latLng.lng())
     if (marker && marker.setMap) {
       marker.setMap(null)
     }
     marker = new google.maps.Marker({
-
       position: {
         lat: event.latLng.lat(),
-        lng: event.latLng.lng(),
+        lng: event.latLng.lng()
       },
       map: map,
-      title: req.user.userLocationName
+      title: document.querySelector("#userLocationName").innerHTML
     });
-    // const removeMarkers = google.maps.event.removeListener(newMarker);
+    saveCoordinatesInDOM(event.latLng.lat(), event.latLng.lng())
   });
-
-  // const newLocation = new google.maps.Marker({
-
-  //   position: {
-  //     lat: event.latLng.lat(),
-  //     lng: event.latLng.lng(),
-  //   },
-  //   map: map,
-  //   title: "New Location"
-  // });
 }
-
+function saveCoordinatesInDOM(lat, lng) {
+  document.querySelector("#lat").value = lat
+  document.querySelector("#lng").value = lng
+  console.log(document.querySelector("#lat"))
+}
 startMap();
+
+saveCoordinatesInDOM()

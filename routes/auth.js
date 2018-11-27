@@ -27,7 +27,7 @@ router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
-  if (username === "" || password === "" || email==="") {
+  if (username === "" || password === "" || email === "") {
     res.render("auth/signup", { message: "Indicate username, password and email" });
     return;
   }
@@ -48,13 +48,13 @@ router.post("/signup", (req, res, next) => {
     });
 
     newUser.save()
-    .then(() => {
-      res.redirect("/auth/login");
-    })
-    .catch(err => {
-      console.log(err)
-      res.render("auth/signup", { message: "Something went wrong" });
-    })
+      .then(() => {
+        res.redirect("/auth/login");
+      })
+      .catch(err => {
+        console.log(err)
+        res.render("auth/signup", { message: "Something went wrong" });
+      })
   });
 });
 
