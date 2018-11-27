@@ -14,8 +14,16 @@ mainRouter.get('/new', (req, res, next) => {
 
 mainRouter.post('/new', (req, res, next) => {
   User.findByIdAndUpdate(
-    { _id: req.params._id },
-    { $set: { address } })
+    { _id: req.user._id },
+    {
+      $set: {
+        address: {
+          userLocationName: req.body.userLocationName,
+          lat: req.body.lat,
+          lng: req.body.lng
+        }
+      }
+    })
   res.redirect('/main');
 });
 
