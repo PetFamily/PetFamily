@@ -1,0 +1,31 @@
+<h1>Add your pet</h1>
+<form action="/main/pets" method="POST" enctype="multipart/form-data">
+  <label for="name">Pet Name</label>
+  <input type="text" name="name" id="name">
+  <label for="type">Select your animal</label>
+  <select name="type" id="type">
+    <option value="Dog">Dog</option>
+    <option value="Cat">Cat</option>
+    <option value="Other">Other</option>
+  </select>
+  <label for="description">Description</label>
+  <textarea name="description" id="name"></textarea>
+  <label for="age">Age</label>
+  <input type="text" name="age" id="age">
+  <label for="notes">Notes</label>
+  <input type="text" name="notes" id="notes">
+  <label for="vaccunationCompleted">Is vaccunated?</label>
+  <select name="vaccunationCompleted" id="vaccunationCompleted">
+    <option value="true">Si</option>
+    <option value="false">No</option>
+  </select>
+
+  <label for="petPhoto">Photo</label>
+  <input type="file" name="petPhoto" id="petPhoto">
+
+
+  <button type="submit">Send</button>
+
+
+
+</form>
