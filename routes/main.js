@@ -103,7 +103,13 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
       console.log(err);
     });
 });
+mainRouter.get("/pets/edit", (req, res) => {
+  res.render("edit-pet");
+})
 
+// mainRouter.post("/pets/edit", uploadCloud.single("petPhoto"), req,res, next => {
+
+// })
 mainRouter.get("/:id", (req, res, next) => {
   User.findById(req.params.id).then(user => {
     res.render("user-profile", { user });
