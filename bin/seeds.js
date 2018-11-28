@@ -19,7 +19,8 @@ let users = [
     availability: "9am a 15pm",
     pricePerHour: "15€",
     typeActivity: "Finder",
-    centerDescription: "Grandes espacios para jugar"
+    centerDescription: "Grandes espacios para jugar",
+    pets: []
   }
 ]
 
@@ -29,7 +30,7 @@ let pet = [{
   description: "gato marron",
   vaccunationCompleted: true,
   age: "3week",
-  notes: "alergico a los lunes",
+  notes: "alergico a los lunes"
 }]
 
 mongoose

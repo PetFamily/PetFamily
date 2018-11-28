@@ -22,7 +22,9 @@ mainRouter.get("/", checkComplete(), (req, res, next) => {
     }
   )
     .then(user => {
-      res.render("main");
+      // JSON.stringify()
+      var newvar = JSON.stringify({ address: user.address })
+      res.render("main", { pepe: newvar });
     })
     .catch(err => console.log(err));
 });
@@ -76,10 +78,21 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
     petPhoto,
     petPath
   });
-  newPet
-    .save()
-    .then(() => {
-      res.redirect("/");
+  newPet.save()
+    .then((pet) => {
+      User.findByIdAndUpdate({
+        _id: req.user._id
+      }, {
+          $push: {
+            pets: {
+              pet: pet._id
+            }
+          }
+        },
+        {
+          new: true
+        })
+      res.redirect("/main");
     })
     .catch(err => {
       console.log(err);

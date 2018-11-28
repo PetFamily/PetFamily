@@ -1,7 +1,6 @@
 let marker;
 function startMap() {
   let storeMarkers;
-
   const map = new google.maps.Map(document.getElementById('map'),
     {
       zoom: 13,

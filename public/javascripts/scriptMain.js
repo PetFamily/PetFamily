@@ -1,5 +1,6 @@
-function startMap() {
+console.log(window.pepe.address);
 
+function startMap() {
   const map = new google.maps.Map(document.getElementById('map'),
     {
       zoom: 13,
@@ -33,5 +34,4 @@ function startMap() {
     }
   }
 }
-
 startMap();
