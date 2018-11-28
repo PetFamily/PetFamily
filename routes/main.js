@@ -15,8 +15,8 @@ mainRouter.get("/", uploadCloud.single("userPhoto"), checkComplete(), (req, res,
         pricePerHour: req.user.pricePerHour,
         centerDescription: req.user.centerDescription,
         typeActivity: req.user.typeActivity,
-        // userPath: req.file.userPath,
-        // userPhoto: req.file.userPhoto,
+        userPath: req.file.userPath,
+        userPhoto: req.file.userPhoto,
       }
     },
     {
