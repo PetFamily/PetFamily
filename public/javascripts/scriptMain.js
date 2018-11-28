@@ -1,5 +1,9 @@
 console.log(window.pepe.address);
 
+function userLocation(){
+  
+}
+
 function startMap() {
   const map = new google.maps.Map(document.getElementById('map'),
     {
@@ -17,14 +21,20 @@ function startMap() {
 
         map.setCenter(user_location);
 
-        const youAreHere = new google.maps.Marker({
+        const addMarker = (lat, lng, title, icon) => new google.maps.Marker({
           position: {
-            lat: user_location.lat,
-            lng: user_location.lng
+            lat,
+            lng
           },
           map: map,
-          title: "You are here"
+          title,
+          icon: {
+            url: icon
+          }
         });
+        addMarker(user_location.lat, user_location.lng, "España", 'http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+        addMarker(window.pepe.address.address.lat, window.pepe.address.address.lng, window.pepe.address.userLocationName, "http://maps.google.com/mapfiles/ms/icons/blue-dot.png");
+        
 
       }, function () {
         console.log('Error in the geolocation service.');

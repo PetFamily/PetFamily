@@ -21,10 +21,12 @@ mainRouter.get("/", checkComplete(), (req, res, next) => {
       new: true
     }
   )
+  .populate("pets")
     .then(user => {
       // JSON.stringify()
-      var newvar = JSON.stringify({ address: user.address })
+      var newvar = JSON.stringify({ address: user });
       res.render("main", { pepe: newvar });
+      console.log(newvar);
     })
     .catch(err => console.log(err));
 });
@@ -78,21 +80,27 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
     petPhoto,
     petPath
   });
-  newPet.save()
-    .then((pet) => {
-      User.findByIdAndUpdate({
-        _id: req.user._id
-      }, {
-          $push: {
-            pets: {
-              pet: pet._id
-            }
+  newPet
+    .save()
+    .then(pet => {
+      User.findByIdAndUpdate(
+        {
+          _id: req.user._id
+        },
+        {
+          $set: {
+            pets: 
+               pet
+            
           }
         },
         {
           new: true
-        })
-      res.redirect("/main");
+        }
+      )
+      .then(()  => {
+        res.redirect("/main");
+      })
     })
     .catch(err => {
       console.log(err);
