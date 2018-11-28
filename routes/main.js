@@ -68,8 +68,8 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
     type,
     vaccunationCompleted
   } = req.body;
-  const petPhoto = req.file.originalname;
-  const petPath = req.file.url;
+  // const petPhoto = req.file.originalname;
+  // const petPath = req.file.url;
   const newPet = new Pets({
     name,
     description,
@@ -77,8 +77,8 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
     notes,
     type,
     vaccunationCompleted,
-    petPhoto,
-    petPath
+    // petPhoto,
+    // petPath
   });
   newPet.save()
     .then(pet => {
@@ -88,7 +88,7 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
         },
         {
           $set: {
-            pets: pet
+            pets: pet._id
           }
         },
         {
@@ -107,9 +107,26 @@ mainRouter.get("/pets/edit", (req, res) => {
   res.render("edit-pet");
 })
 
-// mainRouter.post("/pets/edit", uploadCloud.single("petPhoto"), req,res, next => {
+mainRouter.post("/pets/edit", uploadCloud.single("petPhoto"), (req, res, next) => {
+  // console.log(req.file)
+  Pets.findByIdAndUpdate({ _id: req.params._id }, {
+    $set: {
+      name: req.body.name,
+      description: req.body.description,
+      age: req.body.age,
+      notes: req.body.notes,
+      type: req.body.type,
+      vaccunationCompleted: req.body.vaccunationCompleted,
+      // petPhoto: req.file.originalname, //me dice que Cannot read property 'originalname' of undefined
+      // petPath: req.file.url
+    }
 
-// })
+  }, { new: true })
+    .then(() => {
+      res.redirect("/main")
+    })
+    .catch(err => console.log(err))
+})
 mainRouter.get("/:id", (req, res, next) => {
   User.findById(req.params.id).then(user => {
     res.render("user-profile", { user });
