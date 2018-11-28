@@ -1,14 +1,18 @@
-<a href="/main">Go to Main</a>
-<a href="/main/{{id}}">Go to Profile</a>
+{{!-- <a href="/main">Go to Main</a> --}}
+<h3>Edit Your Profile</h3>
 <form action="/profile" method="post">
   <label for="availability">Available</label>
-  <input type="text" name="availability" id="" placeholder="Enter your time schedule">
+  <input type="text" name="availability" id="" placeholder="Enter your time schedule"> <br><br>
+
   <label for="pricePerHour">Enter your fee</label>
-  <input type="text" name="pricePerHour" id="" placeholder="Enter your fee/hour in €">
+  <input type="text" name="pricePerHour" id="" placeholder="Enter your fee/hour in €"><br><br>
+
   <label for="centerDescription">Description</label>
-  <textarea name="centerDescription" placeholder="Describe your capabilities "></textarea>
+  <textarea name="centerDescription" placeholder="Describe your capabilities "></textarea><br><br>
+  
   <label for="typeActivity">Select your activity</label>
   <select name="typeActivity" id="">
+    <option selected disabled>Choose one</option>
     <option value="Adoption">Adoption</option>
     <option value="Finder">Find babySitter</option>
     <option value="Babysitting">BabySitting</option>

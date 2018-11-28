@@ -13,15 +13,20 @@
 
 <body>
 
-    {{#if user}}
+  {{#if user}}
   <nav>
-    <a href="/main">Home</a>
+    <a href="/main">Go to Main</a>
+    <a href="/main/{{user._id}}">Go to profile</a>
+    <a href="/profile">Edit Profile</a>
+    <a href="/main/pets">Add Pet Profiles</a>
+    <a href="#">Edit Pet Profile</a>
     <a href="/auth/logout">Logout</a>
     {{else}}
     <a href="/auth/login">Login</a>
     <a href="/auth/signup">Signup</a>
   </nav>
-    {{/if}}
+  <h1>PetFamily</h1>
+  {{/if}}
 
   {{{body}}}
 </body>
