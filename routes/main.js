@@ -5,8 +5,8 @@ const Pets = require("../models/Pet");
 const checkComplete = require("../middleware/checkComplete");
 const uploadCloud = require("../config/cloudinary");
 
-mainRouter.get("/", checkComplete(), (req, res, next) => {
-  console.log(req.user.centerDescription);
+mainRouter.get("/", uploadCloud.single("userPhoto"), checkComplete(), (req, res, next) => {
+  console.log(req.file)
   User.findOneAndUpdate(
     { username: req.user.username },
     {
@@ -15,15 +15,15 @@ mainRouter.get("/", checkComplete(), (req, res, next) => {
         pricePerHour: req.user.pricePerHour,
         centerDescription: req.user.centerDescription,
         typeActivity: req.user.typeActivity,
-        userPhoto: req.file.originalname,
-        userPath: req.file.url
+        userPath: req.file.userPath,
+        userPhoto: req.file.userPhoto,
       }
     },
     {
       new: true
     }
   )
-    .populate("pets")
+    .populate("pets", "age")
     .then(user => {
       var newvar = JSON.stringify({ address: user });
       res.render("main", { pepe: newvar });
@@ -80,8 +80,7 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
     petPhoto,
     petPath
   });
-  newPet
-    .save()
+  newPet.save()
     .then(pet => {
       User.findByIdAndUpdate(
         {
@@ -89,9 +88,7 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
         },
         {
           $set: {
-            pets:
-              pet
-
+            pets: pet
           }
         },
         {

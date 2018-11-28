@@ -1,6 +1,6 @@
 {{!-- <a href="/main">Go to Main</a> --}}
 <h3>Edit Your Profile</h3>
-<form action="/profile" method="post">
+<form action="/profile" method="post" enctype="multipart/form-data">
   <label for="availability">Available</label>
   <input type="text" name="availability" id="" placeholder="Enter your time schedule"> <br><br>
 
@@ -8,7 +8,7 @@
   <input type="text" name="pricePerHour" id="" placeholder="Enter your fee/hour in €"><br><br>
 
   <label for="centerDescription">Description</label>
-  <textarea name="centerDescription" placeholder="Describe your capabilities "></textarea><br><br>
+  <textarea name="centerDescription" placeholder="Describe the location's facilities"></textarea><br><br>
 
   <label for="typeActivity">Select your activity</label>
   <select name="typeActivity" id="">
@@ -18,7 +18,9 @@
     <option value="Babysitting">BabySitting</option>
     <option value="Both">Both</option>
   </select> <br><br>
+
   <label for="userPhoto">Photo</label>
-  <input type="file" name="userPhoto" id="userPhoto">
+  <input type="file" name="userPhoto" id="userPhoto"> <br><br>
+
   <button type="submit">Update</button>
 </form>

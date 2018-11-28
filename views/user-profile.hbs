@@ -3,9 +3,14 @@
 {{!-- <a href="/main/pets">Add Pet Profiles</a>
 <a href="#">Edit Pet Profile</a> --}}
 {{!-- <h1>PetFamily</h1> --}}
+<img src="{{user.userPath}}" alt="{{user.username}}'s Profile Picture'">
 <p>Name: {{user.username}}</p>
 <p>Email: {{user.email}}</p>
 <p>Availability: {{user.availability}}</p>
 <p>Price/hour: {{user.pricePerHour}}</p>
 <p>Center description: {{user.centerDescription}}</p>
 <p>Activity: {{user.typeActivity}}</p>
+
+<h2>My Pets</h2>
+<img src="{{user.pets.petPath}}" alt="{{user.pets.name}}'s Photo'">
+<p>{{user.pets.name}}</p>

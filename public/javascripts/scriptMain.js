@@ -29,8 +29,8 @@ function startMap() {
         addMarker(user_location.lat, user_location.lng, "You are here", 'http://maps.google.com/mapfiles/ms/icons/red-dot.png');
         addMarker(locationInfo.address.lat, locationInfo.address.lng, locationInfo.userLocationName, "http://maps.google.com/mapfiles/ms/icons/blue-dot.png");
 
-        // const userLocationName = req.User.userLocationName;
-        // const address = req.User.address;
+        const userLocationName = req.User.userLocationName;
+        const address = req.User.address;
         // const addMarker = new newMarker({
         //   userLocationName,
         //   address,

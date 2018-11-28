@@ -1,21 +1,23 @@
 const express = require('express');
 const profileRouter = express.Router();
 const User = require("../models/User");
-
+const uploadCloud = require("../config/cloudinary");
 
 profileRouter.get('/', (req, res, next) => {
   res.render('profile');
 });
 
-profileRouter.post('/', (req, res, next) => {
-  const { availability, pricePerHour, centerDescription, typeActivity } = req.body;
-  const userPhoto = req.file.originalname;
-  const userPath = req.file.url;
+profileRouter.post('/', uploadCloud.single("userPhoto"), (req, res, next) => {
 
-  User.findByIdAndUpdate({ _id: req.user._id }, { $set: { availability, pricePerHour, centerDescription, typeActivity, userPhoto, userPath } }, { new: true })
+  const { availability, pricePerHour, centerDescription, typeActivity } = req.body;
+  const userPath = req.file.url;
+  const userPhoto = req.file.originalname;
+
+  User.findByIdAndUpdate({ _id: req.user._id }, { $set: { availability, pricePerHour, centerDescription, typeActivity, userPath, userPhoto } }, { new: true })
 
     .then((user) => {
-      console.log("User added properly")
+      console.log(req.file);
+      console.log("jp")
       res.redirect('/main');
     })
     .catch(error => {
@@ -24,10 +26,7 @@ profileRouter.post('/', (req, res, next) => {
 });
 
 profileRouter.get('/user', (req, res, next) => {
-  // User.findById(req.user._id)
-  //   .then((user) => {
   res.render('user-profile');
-  // })
 });
 
 
