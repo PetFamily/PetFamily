@@ -1,10 +1,10 @@
-<h1>Add your pet</h1>
+<h3 class="center-align">Add your pet</h3>
 <form action="/main/pets" method="POST" enctype="multipart/form-data">
   <label for="name">Pet Name</label>
   <input type="text" name="name" id="name"> <br><br>
 
   <label for="type">Select your animal</label>
-  <select name="type" id="type">
+  <select class="browser-default" name="type" id="type">
     <option selected disabled> Choose One</option>
     <option value="Dog">Dog</option>
     <option value="Cat">Cat</option>
@@ -21,14 +21,13 @@
   <input type="text" name="notes" id="notes"> <br><br>
 
   <label for="vaccunationCompleted">Is vaccunated?</label>
-  <select name="vaccunationCompleted" id="vaccunationCompleted">
-    <option selected disabled> Choose One</option>
+  <select class="browser-default" name="vaccunationCompleted" id="vaccunationCompleted">
     <option value="true">Si</option>
     <option value="false">No</option>
-  </select> <br><br>
+  </select> <br>
   
   <label for="petPhoto">Photo</label>
-  <input type="file" name="petPhoto" id="petPhoto">
+  <input type="file" name="petPhoto" id="petPhoto"><br>
 
-  <button type="submit">Send</button>
+  <button class="waves-effect waves-light btn" type="submit">Send</button>
 </form>
