@@ -74,3 +74,5 @@ function startMap() {
 
 }
 startMap();
+
+// https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple#try-it-yourself
