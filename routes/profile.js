@@ -9,8 +9,10 @@ profileRouter.get('/', (req, res, next) => {
 
 profileRouter.post('/', (req, res, next) => {
   const { availability, pricePerHour, centerDescription, typeActivity } = req.body;
+  const userPhoto = req.file.originalname;
+  const userPath = req.file.url;
 
-  User.findByIdAndUpdate({ _id: req.user._id }, { $set: { availability, pricePerHour, centerDescription, typeActivity } }, { new: true })
+  User.findByIdAndUpdate({ _id: req.user._id }, { $set: { availability, pricePerHour, centerDescription, typeActivity, userPhoto, userPath } }, { new: true })
 
     .then((user) => {
       console.log("User added properly")

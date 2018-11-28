@@ -14,16 +14,17 @@ mainRouter.get("/", checkComplete(), (req, res, next) => {
         availability: req.user.availability,
         pricePerHour: req.user.pricePerHour,
         centerDescription: req.user.centerDescription,
-        typeActivity: req.user.typeActivity
+        typeActivity: req.user.typeActivity,
+        userPhoto: req.file.originalname,
+        userPath: req.file.url
       }
     },
     {
       new: true
     }
   )
-  .populate("pets")
+    .populate("pets")
     .then(user => {
-      // JSON.stringify()
       var newvar = JSON.stringify({ address: user });
       res.render("main", { pepe: newvar });
       console.log(newvar);
@@ -67,7 +68,6 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
     type,
     vaccunationCompleted
   } = req.body;
-  console.log(req.body, req.file);
   const petPhoto = req.file.originalname;
   const petPath = req.file.url;
   const newPet = new Pets({
@@ -89,18 +89,18 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
         },
         {
           $set: {
-            pets: 
-               pet
-            
+            pets:
+              pet
+
           }
         },
         {
           new: true
         }
       )
-      .then(()  => {
-        res.redirect("/main");
-      })
+        .then(() => {
+          res.redirect("/main");
+        })
     })
     .catch(err => {
       console.log(err);

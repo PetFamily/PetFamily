@@ -12,13 +12,15 @@ const userSchema = new Schema({
   pricePerHour: { type: String },
   centerDescription: { type: String },
   userLocationName: { type: String },
+  userPhoto: { type: String },
+  userPath: { type: String },
   address:
   {
     lat: Number,
     lng: Number
   },
   typeActivity: { type: String, enum: ['Adoption', 'Finder', 'Babysitting', 'Both'] },
-  pets: [{type:Schema.Types.ObjectId, ref:'Pet'}],
+  pets: [{ type: Schema.Types.ObjectId, ref: 'Pet' }],
 },
   {
     timestamps: {
