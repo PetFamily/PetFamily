@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const petSchema = new Schema({
-  name: { type: String, required: true, unique: true },
+  name: { type: String},
   ownerID: { type: Schema.Types.ObjectId, ref: 'User' },
   type: {
     type: String, required: true, enum: ["Dog", "Cat", "Other"]
