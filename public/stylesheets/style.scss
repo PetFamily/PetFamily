@@ -1,56 +1,80 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #FFE6B7;
 }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
 
-h1,h2,h3,h4,h5,h6{
-  color: #9e9e9e;
-}
-.icon-title{
-  color:black;
-}
-.icon-text{
 
-  font-size: 14px;
-}
-.icon-container{
-  text-align: center;
+h1, h2, h3, h4, h5, h6 {
+  color: #9e9e9e; }
 
-}
-p{
-  color:black;
-  line-height: 15px;
-}
+.icon-title {
+  color: black; }
 
-label{
+.icon-text {
+  font-size: 14px; }
+
+.icon-container {
+  text-align: center; }
+
+p {
+  color: black;
+  line-height: 15px; }
+
+.profile-pic{
+  width: 4.4%;
+  border-radius: 50%;
+  padding-top: 5.5px;
+  float: right;
+   }
+
+label {
   font-size: 1.8rem !important;
-  color:black;
-}
+  color: black; }
 
-#map{
+#map {
   height: 80vh;
-  border-radius: 10px;
-  
-}
+  border-radius: 10px; }
 
 .logo-container {
-  height: 80vh;
-  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-flow: nowrap;
+  height: 100vh;
+  width: 100%; 
 }
-.responsive-img{
+.responsive-img {
   margin: 5vh auto;
-	display:block;
+  display: block;
+  width: 75%;
 }
-.user-profile{
+.sign-up{
+  width: 50%;
+}
+.main-title{
+  color: white;
+}
+.pet-profile {
+  width: 300px;
+  border-radius: 50%;
+  opacity: 1.5; 
+}
+
+.pet-profile:hover {
+  opacity: .5; 
+}
+
+.user-profile {
   width: 200px;
   border-radius: 50%;
-  opacity: 1.5;
+  opacity: 1.5; 
 }
-.user-profile:hover{
-  opacity: .5;
 
+.user-profile:hover {
+  opacity: .5; 
 }
+

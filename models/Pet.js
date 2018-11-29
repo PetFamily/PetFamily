@@ -7,10 +7,10 @@ const petSchema = new Schema({
   type: {
     type: String, required: true, enum: ["Dog", "Cat", "Other"]
   },
-  description: { type: String, required: true },
+  description: { type: String},
   vaccunationCompleted: Boolean,
-  age: { type: String, required: true },
-  notes: { type: String, required: true },
+  age: { type: String },
+  notes: { type: String},
   petPhoto: { type: String },
   petPath: { type: String }
 });

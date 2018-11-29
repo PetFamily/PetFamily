@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   {{!-- <title>{{title}}</title> --}}
   <link rel="stylesheet" href="/stylesheets/style.css" />
- <!-- Compiled and minified CSS -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 
@@ -17,17 +17,16 @@
       <ul class="center hide-on-med-and-down">
   {{#if user}}
           <li><a href="/main">Home</a></li>
-        <li><a href="/main/{{user._id}}">Profile</a></li>
         <li><a href="/main/pets">Add pet</a></li>
         <li><a href="/auth/logout">Logout</a></li>
+        <a href="/main/{{user._id}}"><img src="{{user.userPath}}" alt="photo" class="profile-pic"></a>
   {{else}}
-        <li><a href="/auth/login">Login</a></li>
-       <li><a href="/auth/signup">Signup</a></li> 
+        <h2 class="main-title">PetFamily</h2>
       </ul>
     </div>
   </nav>
   {{/if}}
-  <br><br>
+  <br>
 
   {{{body}}}
 

@@ -11,7 +11,8 @@
 <h4>My Pets</h4>
 {{#each user.pets}}
 <div>
-  <img src="{{this.petPath}}" alt=" {{this.name}}'s Photo'">
+  
+  <img class="pet-profile" src="{{this.petPath}}" alt=" {{this.name}}'s Photo'">
   <p>Name: {{this.name}}</p>
   <p>{{this.name}} is a {{this.type}}</p>
   <p>Age: {{this.age}}</p>
