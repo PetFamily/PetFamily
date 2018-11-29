@@ -15,13 +15,15 @@
   <input id="password" type="password" name="password" placeholder="Your password">
 
   <br><br>
-   <label for="userType">Check your profile </label>
-  <input type="radio" value="Adoption Center" name="userType">
+  <label for="userType">Check your profile </label>
+  <select class="browser-default" name="userType" id="userType">
+    <option value="Adoption Center">Adoption Center</option>
+    <option value="Citizen">Citizen</option>
+  </select>
+  {{!-- <input type="radio" value="Adoption Center" name="userType">
   <label for="Adoption Center">Adoption Center</label>
   <input type="radio" value="Individual" name="userType">
-  <label for="Individual">Individual</label>
-
-  <br><br>
+  <label for="Individual">Individual</label> --}}
   <br>
   {{#if message }}
     <div class="error-message">{{ message }}</div>

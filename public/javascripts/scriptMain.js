@@ -18,25 +18,30 @@ function startMap() {
         };
         map.setCenter(user_location);
 
-        const addMarker = (lat, lng, title, icon,username, email) => new google.maps.Marker({
+        const addMarker = (lat, lng, title, icon,username, email, userType, availability, pricePerHour,typeActivity) => new google.maps.Marker({
           position: {
             lat, lng
           },
           map: map, 
           title,
           username,
+          userType, 
+          availability, 
+          pricePerHour,
+          typeActivity,
           email,
            icon: { url: icon }
         });
 
         addMarker(user_location.lat, user_location.lng, "You are here", 'http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 
-        let allMarkers = locationInfo.map(({ address: { lat, lng }, userLocationName, username, email })=> {
-          return addMarker(lat, lng, userLocationName,'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',username, email,)
+        let allMarkers = locationInfo.map(({ address: { lat, lng }, userLocationName, username, email, userType, availability, pricePerHour,typeActivity })=> {
+          return addMarker(lat, lng, userLocationName,'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',username, email,userType, availability, pricePerHour,typeActivity)
         })
         allMarkers.forEach((element)=>{
           var infowindow = new google.maps.InfoWindow({
-            content: element.title + "<br/>" + element.username
+            content:`<div class="icon-container">`+`<h6 class="icon-title"> ${element.username}` + `<h6 class="icon-text">${element.email}</h6>` + `<h6 class="icon-text">${element.typeActivity}</h6>`+ 
+            `<h6 class="icon-text">${element.userType}</h6>` + `<h6 class="icon-text">${element.availability}</h6>` + `<h6 class="icon-text">${element.pricePerHour}€</h6></div>`
           });
           element.addListener('click', ()=>{
             infowindow.open(map,element)

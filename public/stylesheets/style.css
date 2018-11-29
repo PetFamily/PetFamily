@@ -8,6 +8,15 @@ a {
 h1, h2, h3, h4, h5, h6 {
   color: #9e9e9e; }
 
+.icon-title {
+  color: black; }
+
+.icon-text {
+  font-size: 14px; }
+
+.icon-container {
+  text-align: center; }
+
 p {
   color: black;
   line-height: 15px; }
