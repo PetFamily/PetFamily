@@ -17,34 +17,37 @@ function startMap() {
           lng: position.coords.longitude
         };
         map.setCenter(user_location);
-
-        const addMarker = (lat, lng, title, icon,username, email, userType, availability, pricePerHour,typeActivity) => new google.maps.Marker({
+        const addMarker = (lat, lng, title, icon, username, email, userType, availability, pricePerHour, typeActivity) => new google.maps.Marker({
           position: {
             lat, lng
           },
-          map: map, 
+          map: map,
           title,
           username,
-          userType, 
-          availability, 
+          userType,
+          availability,
           pricePerHour,
           typeActivity,
           email,
-           icon: { url: icon }
+          icon: {
+            url: icon,
+            origin: new google.maps.Point(0, 0),
+            scaledSize: new google.maps.Size(40, 40)
+          }
         });
 
         addMarker(user_location.lat, user_location.lng, "You are here", 'http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 
-        let allMarkers = locationInfo.map(({ address: { lat, lng }, userLocationName, username, email, userType, availability, pricePerHour,typeActivity })=> {
-          return addMarker(lat, lng, userLocationName,'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',username, email,userType, availability, pricePerHour,typeActivity)
+        let allMarkers = locationInfo.map(({ address: { lat, lng }, userLocationName, username, email, userType, availability, pricePerHour, typeActivity }) => {
+          return addMarker(lat, lng, userLocationName, 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png', username, email, userType, availability, pricePerHour, typeActivity)
         })
-        allMarkers.forEach((element)=>{
+        allMarkers.forEach((element) => {
           var infowindow = new google.maps.InfoWindow({
-            content:`<div class="icon-container">`+`<h6 class="icon-title"> ${element.username}` + `<h6 class="icon-text">${element.email}</h6>` + `<h6 class="icon-text">${element.typeActivity}</h6>`+ 
-            `<h6 class="icon-text">${element.userType}</h6>` + `<h6 class="icon-text">${element.availability}</h6>` + `<h6 class="icon-text">${element.pricePerHour}€</h6></div>`
+            content: `<div class="icon-container">` + `<h6 class="icon-title"> ${element.username}` + `<h6 class="icon-text">${element.email}</h6>` + `<h6 class="icon-text">${element.typeActivity}</h6>` +
+              `<h6 class="icon-text">${element.userType}</h6>` + `<h6 class="icon-text">${element.availability}</h6>` + `<h6 class="icon-text">${element.pricePerHour}€</h6></div>`
           });
-          element.addListener('click', ()=>{
-            infowindow.open(map,element)
+          element.addListener('click', () => {
+            infowindow.open(map, element)
           })
         })
       }, function () {
