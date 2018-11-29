@@ -10,7 +10,12 @@
 <p>Price/hour: {{user.pricePerHour}}</p>
 <p>Center description: {{user.centerDescription}}</p>
 <p>Activity: {{user.typeActivity}}</p>
+<button class="waves-effect waves-light btn"><a href="/profile">Edit Profile</a></button>
 
 <h2>My Pets</h2>
-<img src="{{user.pets.petPath}}" alt="{{user.pets.name}}'s Photo'">
-<p>Name: {{user.pets}}</p>
+{{#each user.pets}}
+  <img src="{{this.petPath}}" alt="{{this.name}}'s Photo'">
+  <p>Name: {{this.name}}</p>
+{{/each}}
+
+<button class="waves-effect waves-light btn"><a href="/main/pets/edit">Edit Pet Profile</a></button>
