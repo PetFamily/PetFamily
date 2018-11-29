@@ -1,8 +1,7 @@
 <h2>Edit your Pet's Profile</h2>
-<form action="/main/pets/{{pets._id}}/edit" method="POST" enctype="multipart/form-data">
+<form action="/main/pets/{{pet._id}}/edit" method="POST" enctype="multipart/form-data">
   <label for="name">Pet Name</label>
-  <input type="text" name="name" id="name" placeholder="{{user.pets.name}}"> <br><br>
-
+  <input type="text" name="name" id="name" placeholder="{{pet.name}}"> <br><br>
   <label for="type">Select your animal</label>
   <select class="browser-default" name="type" id="">
     <option selected disabled> Choose One</option>
@@ -11,13 +10,12 @@
     <option value="Other">Other</option>
   </select> <br><br>
   <label for="description">Description</label>
-  <textarea name="description" placeholder="{{user.pets.description}}"></textarea> <br><br>
+  <textarea name="description" placeholder="{{pet.description}}"></textarea> <br><br>
 
   <label for="age">Age</label>
-  <input type="text" name="age" id="age" placeholder="{{user.pets.age}}"> <br><br>
-
+  <input type="text" name="age" id="age" placeholder="{{pet.age}}"> <br><br>
   <label for="notes">Notes</label>
-  <input type="text" name="notes" id="notes" placeholder="{{user.pets.description}}"> <br><br>
+  <input type="text" name="notes" id="notes" placeholder="{{pet.description}}"> <br><br>
 
   <label for="vaccunationCompleted">Is the pet vaccinated?</label>
   <select class="browser-default" name="vaccunationCompleted" id="">
