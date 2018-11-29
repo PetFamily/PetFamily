@@ -6,20 +6,19 @@ const checkComplete = require("../middleware/checkComplete");
 const uploadCloud = require("../config/cloudinary");
 
 mainRouter.get("/", checkComplete(), (req, res, next) => {
-   User.find()
+  User.find()
     .then(users => {
       const address = users.map(({address, userLocationName, username, email, userType, availability, pricePerHour,typeActivity}) => {
      
          return {address, userLocationName, username, email, userType, availability, pricePerHour,typeActivity}
       });
       var JSONaddress = JSON.stringify({ address });
-      
-      res.render("main", { address:JSONaddress });
+
+      res.render("main", { address: JSONaddress });
       console.log(JSONaddress);
     })
     .catch(err => console.log(err));
 });
-
 
 mainRouter.get("/new", (req, res, next) => {
   res.render("userLocation");
@@ -77,7 +76,7 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
           _id: req.user._id
         },
         {
-          $set: {
+          $push: {
             pets: pet._id
           }
         },
@@ -93,36 +92,43 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
       console.log(err);
     });
 });
-mainRouter.get("/pets/edit", (req, res) => {
-  res.render("edit-pet");
+mainRouter.get("/pets/:id/edit", (req, res) => {
+  Pets.findByIdAndUpdate(req.params.id)
+    .then(pet => {
+      res.render("edit-pet", { pet });
+    })
 })
 
-mainRouter.post("/pets/edit", uploadCloud.single("petPhoto"), (req, res, next) => {
-  // console.log(req.file)
-  Pets.findByIdAndUpdate({ _id: req.params._id }, {
-    $set: {
-      name: req.body.name,
-      description: req.body.description,
-      age: req.body.age,
-      notes: req.body.notes,
-      type: req.body.type,
-      vaccunationCompleted: req.body.vaccunationCompleted,
-      petPhoto: req.file.originalname, //me dice que Cannot read property 'originalname' of undefined
-      petPath: req.file.url
+mainRouter.post("/pets/:id/edit", uploadCloud.single("petPhoto"), (req, res, next) => {
+  const update = { name, description, age, notes, type, vaccunationCompleted } = req.body
+  if (req.file) {
+    update.petPath = req.file.url;
+    update.petPhoto = req.file.originalname
+  }
+  for (key in update) {
+    if (update[key] == '') {
+      delete update[key]
     }
-
-  }, { new: true })
+  }
+  Pets.findByIdAndUpdate({ _id: req.params.id },
+    update
+    , { new: true })
     .then(() => {
       res.redirect("/main")
     })
     .catch(err => console.log(err))
 })
+mainRouter.get('/pets/:id/delete', (req, res, next) => {
+  Pets.findByIdAndRemove(req.params.id)
+    .then(() => res.redirect(`/main/${req.user._id}`))
+    .catch(err => next(err));
+});
 mainRouter.get("/:id", (req, res, next) => {
   User.findById(req.params.id)
-  .populate('pets')
-  .then(user => {
-    res.render("user-profile", { user });
-  });
+    .populate('pets')
+    .then(user => {
+      res.render("user-profile", { user });
+    });
 });
 
 module.exports = mainRouter;

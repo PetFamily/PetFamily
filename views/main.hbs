@@ -1,21 +1,14 @@
-{{!-- <a href="/main/pets">Add a Pet</a> --}}
-
-
 <div class="col s12">
 
   <h4>Hello, {{user.username}}!!</h4>
-  {{!-- <h1>PetFamily</h1> --}}
   <h3>Find the right home for your pet</h3>
 
 
   <div class="col s12" id="map"></div>
-  <button class="waves-effect waves-light btn"><a href="/main/new"</a>Add new marker</button>
-</div>
-
-
-{{!-- <p>{{pepe}}</p> --}}
-<script>
-  window.address = {{{address}}};
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key={{key}}"></script>
-<script src="/javascripts/scriptMain.js"></script>
+  <button class="waves-effect waves-light btn"><a href="/main/new" </a>Add new marker</button> </div> 
+  
+  <script>
+    window.address = {{{ address }}};
+  </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key={{key}}"></script>
+      <script src="/javascripts/scriptMain.js"></script>
