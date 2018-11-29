@@ -1,6 +1,6 @@
 // console.log(window.pepe.address);
-const locationInfo = window.address.address
-const markers = [];
+const locationInfo = window.address.address;
+
 
 function startMap() {
   const map = new google.maps.Map(document.getElementById('map'),
@@ -16,29 +16,32 @@ function startMap() {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-
         map.setCenter(user_location);
 
-        var contentString = '<h1>hola</h1>'
-        var infoWindow = new google.maps.InfoWindow({
-          content: contentString
-        })
-
-        const addMarker = (lat, lng, title, icon) => new google.maps.Marker({
+        const addMarker = (lat, lng, title, icon,username, email) => new google.maps.Marker({
           position: {
             lat, lng
           },
-          map: map, title, icon: { url: icon }
+          map: map, 
+          title,
+          username,
+          email,
+           icon: { url: icon }
         });
+
         addMarker(user_location.lat, user_location.lng, "You are here", 'http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 
-
-        locationInfo.forEach(({ address: { lat, lng }, userLocationName })=> {
-          addMarker(lat, lng, userLocationName,'http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+        let allMarkers = locationInfo.map(({ address: { lat, lng }, userLocationName, username, email })=> {
+          return addMarker(lat, lng, userLocationName,'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',username, email,)
         })
-        addMarker.addListener('click', function () {
-          infoWindow.open(map, addMarker);
-        });
+        allMarkers.forEach((element)=>{
+          var infowindow = new google.maps.InfoWindow({
+            content: element.title + "<br/>" + element.username
+          });
+          element.addListener('click', ()=>{
+            infowindow.open(map,element)
+          })
+        })
       }, function () {
         console.log('Error in the geolocation service.');
       });

@@ -8,11 +8,12 @@ const uploadCloud = require("../config/cloudinary");
 mainRouter.get("/", checkComplete(), (req, res, next) => {
    User.find()
     .then(users => {
-      const address = users.map(({address, userLocationName}) => {
-         return {address, userLocationName}
-          
+      const address = users.map(({address, userLocationName, username, email}) => {
+     
+         return {address, userLocationName, username, email}
       });
       var JSONaddress = JSON.stringify({ address });
+      
       res.render("main", { address:JSONaddress });
       console.log(JSONaddress);
     })
