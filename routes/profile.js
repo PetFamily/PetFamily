@@ -8,13 +8,20 @@ profileRouter.get('/', (req, res, next) => {
 });
 
 profileRouter.post('/', uploadCloud.single("userPhoto"), (req, res, next) => {
-
-  const { availability, pricePerHour, centerDescription, typeActivity } = req.body;
-  const userPath = req.file.url;
-  const userPhoto = req.file.originalname;
-
-  User.findByIdAndUpdate({ _id: req.user._id }, { $set: { availability, pricePerHour, centerDescription, typeActivity, userPath, userPhoto } }, { new: true })
-
+  const update = { availability, pricePerHour, centerDescription, typeActivity } = req.body
+  if (req.file) {
+    update.userPath = req.file.url;
+    update.userPhoto = req.file.originalname
+  }
+  for (key in update) {
+    if (update[key] == '') {
+      delete update[key]
+    }
+  }
+  User.findByIdAndUpdate({ _id: req.user._id },
+    update, {
+      new: true
+    })
     .then((user) => {
       console.log(req.file);
       console.log("jp")
@@ -28,7 +35,4 @@ profileRouter.post('/', uploadCloud.single("userPhoto"), (req, res, next) => {
 profileRouter.get('/user', (req, res, next) => {
   res.render('user-profile');
 });
-
-
-
 module.exports = profileRouter;
