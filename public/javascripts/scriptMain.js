@@ -37,33 +37,6 @@ function startMap() {
         addMarker.addListener('click', function () {
           infoWindow.open(map, addMarker);
         });
-
-        // const userLocationName = req.User.userLocationName;
-        // const address = req.User.address;
-        // const addMarker = new newMarker({
-        //   userLocationName,
-        //   address,
-        // });
-        // addMarker
-        //   .save()
-        // .then(marker => {
-        // User.findByIdAndUpdate(
-        //   {
-        //     _id: req.user._id
-        //   },
-        //   {
-        //     $set: {
-        //       pets: pet
-        //     }
-        //   },
-        //   {
-        //     new: true
-        //   }
-        // )
-        //   .then(() => {
-        //     res.redirect("/main");
-        //   })
-
       }, function () {
         console.log('Error in the geolocation service.');
       });

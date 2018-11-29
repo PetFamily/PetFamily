@@ -2,25 +2,33 @@
 <h3>Edit Your Profile</h3>
 <form action="/profile" method="post" enctype="multipart/form-data">
   <label for="availability">Available</label>
-  <input type="text" name="availability" id="" placeholder="Enter your time schedule"> <br><br>
-
+  <input type="text" name="availability" id="" placeholder="Enter your time schedule"> <br>
   <label for="pricePerHour">Enter your fee</label>
-  <input type="text" name="pricePerHour" id="" placeholder="Enter your fee/hour in €"><br><br>
+  <input type="text" name="pricePerHour" id="" placeholder="Enter your fee/hour in €"><br>
 
   <label for="centerDescription">Description</label>
+<<<<<<< HEAD
   <textarea name="centerDescription" placeholder="Describe the location's facilities"></textarea><br><br>
 
+=======
+  <textarea name="centerDescription" placeholder="Describe your capabilities "></textarea><br>
+  
+>>>>>>> Angel
   <label for="typeActivity">Select your activity</label>
-  <select name="typeActivity" id="">
-    <option selected disabled>Choose one</option>
+  <select class="browser-default" name="typeActivity" id="">
     <option value="Adoption">Adoption</option>
     <option value="Finder">Find babySitter</option>
     <option value="Babysitting">BabySitting</option>
     <option value="Both">Both</option>
+<<<<<<< HEAD
   </select> <br><br>
 
   <label for="userPhoto">Photo</label>
   <input type="file" name="userPhoto" id="userPhoto"> <br><br>
 
   <button type="submit">Update</button>
+=======
+  </select>
+  <button class="waves-effect waves-light btn" type="submit">Update</button>
+>>>>>>> Angel
 </form>

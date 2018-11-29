@@ -73,7 +73,7 @@ app.use(flash());
 require('./passport')(app);
 
 // default value for title local
-app.locals.title = 'Express - Generated with IonGenerator';
+app.locals.title = 'PetFamily';
 app.locals.key = process.env.API_KEY;
 app.use((req, res, next) => {
   app.locals.user = req.user;
