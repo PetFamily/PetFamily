@@ -20,7 +20,7 @@ function startMap() {
         map.setCenter(user_location);
 
         var contentString = '<h1>hola</h1>'
-        var infoWindow = new google.maps.InfoWindow({
+        var infowindow = new google.maps.InfoWindow({
           content: contentString
         })
 
@@ -29,15 +29,18 @@ function startMap() {
             lat, lng
           },
           map: map, title, icon: { url: icon }
-        });
+        })
         addMarker(user_location.lat, user_location.lng, "You are here", 'http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 
 
-        locationInfo.forEach(({ address: { lat, lng }, userLocationName })=> {
-          addMarker(lat, lng, userLocationName,'http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+        locationInfo.forEach(({ address: { lat, lng }, userLocationName }) => {
+          addMarker(lat, lng, userLocationName, 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
         })
+
+
+        //PRUEBA 1 - error Uncaught TypeError: addMarker.addListener is not a function
         addMarker.addListener('click', function () {
-          infoWindow.open(map, addMarker);
+          infowindow.open(map, addMarker);
         });
       }, function () {
         console.log('Error in the geolocation service.');
@@ -54,7 +57,17 @@ startMap();
 
 /*
 locationInfo.forEach( ({address:{lat:latitude, lng}, userLocationName}) => {
-          // const {lat, lng} = e.address;
-          // const userLocationName = e.userLocationName;
-          addMarker(latitude, lng, userLocationName, "http://maps.google.com/mapfiles/ms/icons/blue-dot.png")})
-*/
+  // const {lat, lng} = e.address;
+  // const userLocationName = e.userLocationName;
+  addMarker(latitude, lng, userLocationName, "http://maps.google.com/mapfiles/ms/icons/blue-dot.png")})
+  */
+
+         //PRUEBA 2 - error   ReferenceError: marker is not defined
+         // marker.addListener('click', function () {
+         // infowindow.open(map, addMarker);
+         // }); 
+
+         //PRUEBA 3 - error  Uncaught ReferenceError: marker is not defined
+         // marker.addListener('click', function () {
+         //   infowindow.open(map, addMarker);
+         // });

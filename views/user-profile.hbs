@@ -10,12 +10,17 @@
 
 <h4>My Pets</h4>
 {{#each user.pets}}
+<div>
   <img src="{{this.petPath}}" alt=" {{this.name}}'s Photo'">
   <p>Name: {{this.name}}</p>
   <p>Age: {{this.age}}</p>
   <p>Description:{{this.description}}</p>
+  {{!-- <p>{{this._id}}</p> --}}
   <p>Notes: {{this.notes}}</p>
   <p>Is {{this.name}} vaccinated? {{this.vaccunationCompleted}}</p>
+  <button type="submit" class=" waves-effect waves-light btn"><a href="/main/pets/{{this._id}}/edit">Edit this pet</a></button>
+  <button type="submit" class=" waves-effect waves-light btn"><a href="/main/pets/{{this._id}}/delete">Remove this pet</a></button>
+</div>
 {{/each}}
 
-<button class=" waves-effect waves-light btn"><a href="/main/pets/edit">Edit Pet Profile</a></button>
+{{!-- <button class=" waves-effect waves-light btn"><a href="/main/pets/edit">Edit Pet Profile</a></button> --}}

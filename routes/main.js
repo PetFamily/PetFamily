@@ -6,14 +6,14 @@ const checkComplete = require("../middleware/checkComplete");
 const uploadCloud = require("../config/cloudinary");
 
 mainRouter.get("/", checkComplete(), (req, res, next) => {
-   User.find()
+  User.find()
     .then(users => {
-      const address = users.map(({address, userLocationName}) => {
-         return {address, userLocationName}
-          
+      const address = users.map(({ address, userLocationName }) => {
+        return { address, userLocationName }
+
       });
       var JSONaddress = JSON.stringify({ address });
-      res.render("main", { address:JSONaddress });
+      res.render("main", { address: JSONaddress });
       console.log(JSONaddress);
     })
     .catch(err => console.log(err));
@@ -76,7 +76,7 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
           _id: req.user._id
         },
         {
-          $set: {
+          $push: {
             pets: pet._id
           }
         },
@@ -92,12 +92,11 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
       console.log(err);
     });
 });
-mainRouter.get("/pets/edit", (req, res) => {
+mainRouter.get("/pets/:id/edit", (req, res) => {
   res.render("edit-pet");
 })
 
-mainRouter.post("/pets/edit", uploadCloud.single("petPhoto"), (req, res, next) => {
-  // console.log(req.file)
+mainRouter.post("/pets/:id/edit", uploadCloud.single("petPhoto"), (req, res, next) => {
   Pets.findByIdAndUpdate({ _id: req.params._id }, {
     $set: {
       name: req.body.name,
@@ -111,17 +110,22 @@ mainRouter.post("/pets/edit", uploadCloud.single("petPhoto"), (req, res, next) =
     }
 
   }, { new: true })
-    .then(() => {
-      res.redirect("/main")
+    .then((pets) => {
+      res.redirect("/main", { pets })
     })
     .catch(err => console.log(err))
 })
+mainRouter.post('/pets/:id/delete', (req, res, next) => {
+  Pets.findByIdAndRemove(req.params.id)
+    .then(() => res.redirect('/profile'))
+    .catch(err => next(err));
+});
 mainRouter.get("/:id", (req, res, next) => {
   User.findById(req.params.id)
-  .populate('pets')
-  .then(user => {
-    res.render("user-profile", { user });
-  });
+    .populate('pets')
+    .then(user => {
+      res.render("user-profile", { user });
+    });
 });
 
 module.exports = mainRouter;
