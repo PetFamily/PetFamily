@@ -1,9 +1,4 @@
-{{!-- <a href="/main">Go to Main</a> --}}
-{{!-- <a href="/profile">Edit Profile</a> --}}
-{{!-- <a href="/main/pets">Add Pet Profiles</a>
-<a href="#">Edit Pet Profile</a> --}}
-{{!-- <h1>PetFamily</h1> --}}
-<<<<<<< HEAD
+<h4>My Profile</h4>
 <img src="{{user.userPath}}" alt="{{user.username}}'s Profile Picture'">
 <p>Name: {{user.username}}</p>
 <p>Email: {{user.email}}</p>
@@ -13,25 +8,14 @@
 <p>Activity: {{user.typeActivity}}</p>
 <button class="waves-effect waves-light btn"><a href="/profile">Edit Profile</a></button>
 
-<h2>My Pets</h2>
-<<<<<<< HEAD
-<img src="{{user.pets.petPath}}" alt="{{user.pets.name}}'s Photo'">
-<p>Name: {{user.pets}}</p>
-=======
-  <h3>{{user.username}} Profile!!</h3> 
-
-<h6>Name: {{user.username}}</h6>
-<h6>Email: {{user.email}}</h6>
-<h6>Availability: {{user.availability}}</h6>
-<h6>Price/hour: {{user.pricePerHour}}</h6>
-<h6>Center description: {{user.centerDescription}}</h6>
-<h6>Activity: {{user.typeActivity}}</h6>
->>>>>>> Angel
-=======
+<h4>My Pets</h4>
 {{#each user.pets}}
-  <img src="{{this.petPath}}" alt="{{this.name}}'s Photo'">
+  <img src="{{this.petPath}}" alt=" {{this.name}}'s Photo'">
   <p>Name: {{this.name}}</p>
+  <p>Age: {{this.age}}</p>
+  <p>Description:{{this.description}}</p>
+  <p>Notes: {{this.notes}}</p>
+  <p>Is {{this.name}} vaccinated? {{this.vaccunationCompleted}}</p>
 {{/each}}
 
-<button class="waves-effect waves-light btn"><a href="/main/pets/edit">Edit Pet Profile</a></button>
->>>>>>> b7e42d99d850b5c207ef8ae7ffe05a6892071d9f
+<button class=" waves-effect waves-light btn"><a href="/main/pets/edit">Edit Pet Profile</a></button>
