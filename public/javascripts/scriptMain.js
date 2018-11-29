@@ -1,6 +1,6 @@
 // console.log(window.pepe.address);
-const locationInfo = window.address.address
-const markers = [];
+const locationInfo = window.address.address;
+
 
 function startMap() {
   const map = new google.maps.Map(document.getElementById('map'),
@@ -16,32 +16,32 @@ function startMap() {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-
         map.setCenter(user_location);
 
-        var contentString = '<h1>hola</h1>'
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString
-        })
-
-        const addMarker = (lat, lng, title, icon) => new google.maps.Marker({
+        const addMarker = (lat, lng, title, icon,username, email) => new google.maps.Marker({
           position: {
             lat, lng
           },
-          map: map, title, icon: { url: icon }
-        })
+          map: map, 
+          title,
+          username,
+          email,
+           icon: { url: icon }
+        });
+
         addMarker(user_location.lat, user_location.lng, "You are here", 'http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 
-
-        locationInfo.forEach(({ address: { lat, lng }, userLocationName }) => {
-          addMarker(lat, lng, userLocationName, 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+        let allMarkers = locationInfo.map(({ address: { lat, lng }, userLocationName, username, email })=> {
+          return addMarker(lat, lng, userLocationName,'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',username, email,)
         })
-
-
-        //PRUEBA 1 - error Uncaught TypeError: addMarker.addListener is not a function
-        addMarker.addListener('click', function () {
-          infowindow.open(map, addMarker);
-        });
+        allMarkers.forEach((element)=>{
+          var infowindow = new google.maps.InfoWindow({
+            content: element.title + "<br/>" + element.username
+          });
+          element.addListener('click', ()=>{
+            infowindow.open(map,element)
+          })
+        })
       }, function () {
         console.log('Error in the geolocation service.');
       });
@@ -57,17 +57,7 @@ startMap();
 
 /*
 locationInfo.forEach( ({address:{lat:latitude, lng}, userLocationName}) => {
-  // const {lat, lng} = e.address;
-  // const userLocationName = e.userLocationName;
-  addMarker(latitude, lng, userLocationName, "http://maps.google.com/mapfiles/ms/icons/blue-dot.png")})
-  */
-
-         //PRUEBA 2 - error   ReferenceError: marker is not defined
-         // marker.addListener('click', function () {
-         // infowindow.open(map, addMarker);
-         // }); 
-
-         //PRUEBA 3 - error  Uncaught ReferenceError: marker is not defined
-         // marker.addListener('click', function () {
-         //   infowindow.open(map, addMarker);
-         // });
+          // const {lat, lng} = e.address;
+          // const userLocationName = e.userLocationName;
+          addMarker(latitude, lng, userLocationName, "http://maps.google.com/mapfiles/ms/icons/blue-dot.png")})
+*/

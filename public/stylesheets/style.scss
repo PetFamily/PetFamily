@@ -22,7 +22,7 @@ label{
 
 #map{
   height: 80vh;
-  border-radius: 10%;
+  border-radius: 10px;
   
 }
 
@@ -33,4 +33,13 @@ label{
 .responsive-img{
   margin: 5vh auto;
 	display:block;
+}
+.user-profile{
+  width: 200px;
+  border-radius: 50%;
+  opacity: 1.5;
+}
+.user-profile:hover{
+  opacity: .5;
+
 }
