@@ -1,6 +1,5 @@
-// const newMarker = require('../../models/Markers.js');
 // console.log(window.pepe.address);
-const locationInfo = window.pepe.address
+const locationInfo = window.address.address
 const markers = [];
 
 function startMap() {
@@ -32,8 +31,11 @@ function startMap() {
           map: map, title, icon: { url: icon }
         });
         addMarker(user_location.lat, user_location.lng, "You are here", 'http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-        addMarker(locationInfo.address.lat, locationInfo.address.lng, locationInfo.userLocationName, "http://maps.google.com/mapfiles/ms/icons/blue-dot.png");
 
+
+        locationInfo.forEach(({ address: { lat, lng }, userLocationName })=> {
+          addMarker(lat, lng, userLocationName,'http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+        })
         addMarker.addListener('click', function () {
           infoWindow.open(map, addMarker);
         });
@@ -49,3 +51,10 @@ function startMap() {
 startMap();
 
 // https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple#try-it-yourself
+
+/*
+locationInfo.forEach( ({address:{lat:latitude, lng}, userLocationName}) => {
+          // const {lat, lng} = e.address;
+          // const userLocationName = e.userLocationName;
+          addMarker(latitude, lng, userLocationName, "http://maps.google.com/mapfiles/ms/icons/blue-dot.png")})
+*/

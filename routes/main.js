@@ -5,32 +5,21 @@ const Pets = require("../models/Pet");
 const checkComplete = require("../middleware/checkComplete");
 const uploadCloud = require("../config/cloudinary");
 
-mainRouter.get("/", uploadCloud.single("userPhoto"), checkComplete(), (req, res, next) => {
-  console.log(req.file)
-  User.findOneAndUpdate(
-    { username: req.user.username },
-    {
-      $set: {
-        availability: req.user.availability,
-        pricePerHour: req.user.pricePerHour,
-        centerDescription: req.user.centerDescription,
-        typeActivity: req.user.typeActivity,
-        userPath: req.file.userPath,
-        userPhoto: req.file.userPhoto,
-      }
-    },
-    {
-      new: true
-    }
-  )
-    .populate("pets")
-    .then(user => {
-      var newvar = JSON.stringify({ address: user });
-      res.render("main", { pepe: newvar });
-      console.log(newvar);
+mainRouter.get("/", checkComplete(), (req, res, next) => {
+   User.find()
+    .then(users => {
+      const address = users.map(({address, userLocationName}) => {
+         return {address, userLocationName}
+          
+      });
+      var JSONaddress = JSON.stringify({ address });
+      res.render("main", { address:JSONaddress });
+      console.log(JSONaddress);
     })
     .catch(err => console.log(err));
 });
+
+
 mainRouter.get("/new", (req, res, next) => {
   res.render("userLocation");
 });
@@ -68,8 +57,8 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
     type,
     vaccunationCompleted
   } = req.body;
-  // const petPhoto = req.file.originalname;
-  // const petPath = req.file.url;
+  const petPhoto = req.file.originalname;
+  const petPath = req.file.url;
   const newPet = new Pets({
     name,
     description,
@@ -77,8 +66,8 @@ mainRouter.post("/pets", uploadCloud.single("petPhoto"), (req, res, next) => {
     notes,
     type,
     vaccunationCompleted,
-    // petPhoto,
-    // petPath
+    petPhoto,
+    petPath
   });
   newPet.save()
     .then(pet => {
@@ -117,8 +106,8 @@ mainRouter.post("/pets/edit", uploadCloud.single("petPhoto"), (req, res, next) =
       notes: req.body.notes,
       type: req.body.type,
       vaccunationCompleted: req.body.vaccunationCompleted,
-      // petPhoto: req.file.originalname, //me dice que Cannot read property 'originalname' of undefined
-      // petPath: req.file.url
+      petPhoto: req.file.originalname, //me dice que Cannot read property 'originalname' of undefined
+      petPath: req.file.url
     }
 
   }, { new: true })
@@ -128,7 +117,9 @@ mainRouter.post("/pets/edit", uploadCloud.single("petPhoto"), (req, res, next) =
     .catch(err => console.log(err))
 })
 mainRouter.get("/:id", (req, res, next) => {
-  User.findById(req.params.id).then(user => {
+  User.findById(req.params.id)
+  .populate('pets')
+  .then(user => {
     res.render("user-profile", { user });
   });
 });
