@@ -17,7 +17,7 @@ function startMap() {
           lng: position.coords.longitude
         };
         map.setCenter(user_location);
-        const addMarker = (lat, lng, title, icon, username, email, userType, availability, pricePerHour, typeActivity) => new google.maps.Marker({
+        const addMarker = (lat, lng, title, icon, username, email, userType, availability, pricePerHour, typeActivity,_id) => new google.maps.Marker({
           position: {
             lat, lng
           },
@@ -29,6 +29,7 @@ function startMap() {
           pricePerHour,
           typeActivity,
           email,
+          _id,
           icon: {
             url: icon,
             origin: new google.maps.Point(0, 0),
@@ -38,13 +39,13 @@ function startMap() {
 
         addMarker(user_location.lat, user_location.lng, "You are here", 'http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 
-        let allMarkers = locationInfo.map(({ address: { lat, lng }, userLocationName, username, email, userType, availability, pricePerHour, typeActivity }) => {
-          return addMarker(lat, lng, userLocationName, 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png', username, email, userType, availability, pricePerHour, typeActivity)
+        let allMarkers = locationInfo.map(({ address: { lat, lng }, userLocationName, username, email, userType, availability, pricePerHour, typeActivity, _id }) => {
+          return addMarker(lat, lng, userLocationName, 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png', username, email, userType, availability, pricePerHour, typeActivity, _id)
         })
         allMarkers.forEach((element) => {
           var infowindow = new google.maps.InfoWindow({
             content: `<div class="icon-container">` + `<h6 class="icon-title"> ${element.username}` + `<h6 class="icon-text">${element.email}</h6>` + `<h6 class="icon-text">${element.typeActivity}</h6>` +
-              `<h6 class="icon-text">${element.userType}</h6>` + `<h6 class="icon-text">${element.availability}</h6>` + `<h6 class="icon-text">${element.pricePerHour}€</h6></div>`
+              `<h6 class="icon-text">${element.userType}</h6>` + `<h6 class="icon-text">${element.availability}</h6>` + `<h6 class="icon-text">${element.pricePerHour}€</h6></div>` + `<button class="waves-effect waves-light btn"><a href="/main/${element.username}">Go to the Profile</a></button>`
           });
           element.addListener('click', () => {
             infowindow.open(map, element)
