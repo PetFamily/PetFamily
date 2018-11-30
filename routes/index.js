@@ -10,8 +10,8 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-router.use('/profile', ensureLogin.ensureLoggedIn(), profile);
-router.use('/main', ensureLogin.ensureLoggedIn(), main);
+router.use('/profile', ensureLogin.ensureLoggedIn('/auth/login'), profile);
+router.use('/main', ensureLogin.ensureLoggedIn('/auth/login'), main);
 
 
 module.exports = router;

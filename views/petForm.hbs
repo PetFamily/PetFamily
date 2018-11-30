@@ -1,10 +1,10 @@
 <h3 class="center-align">Add your pet</h3>
 <form action="/main/pets" method="POST" enctype="multipart/form-data">
   <label for="name">Pet Name</label>
-  <input type="text" name="name" id="name"> <br><br>
+  <input type="text" name="name" id="name" required> <br><br>
 
   <label for="type">Select your animal</label>
-  <select class="browser-default" name="type" id="type">
+  <select class="browser-default" name="type" id="type" required>
     <option selected disabled> Choose One</option>
     <option value="Dog">Dog</option>
     <option value="Cat">Cat</option>

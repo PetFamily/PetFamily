@@ -7,20 +7,20 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   {{!-- <title>{{title}}</title> --}}
   <link rel="stylesheet" href="/stylesheets/style.css" />
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 
 <body>
   <nav>
     <div class="nav-wrapper">
       <ul class="center hide-on-med-and-down">
-  {{#if user}}
-          <li><a href="/main">Home</a></li>
+        {{#if user}}
+        <li><a href="/main">Home</a></li>
         <li><a href="/main/pets">Add pet</a></li>
         <li><a href="/auth/logout">Logout</a></li>
-        <a href="/main/{{user._id}}"><img src="{{user.userPath}}" alt="photo" class="profile-pic"></a>
-  {{else}}
+        <a href="/main/myprofile"><img src="{{user.userPath}}" alt="photo" class="profile-pic"></a>
+        {{else}}
         <h2 class="main-title">PetFamily</h2>
       </ul>
     </div>
