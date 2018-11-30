@@ -45,7 +45,7 @@ function startMap() {
         allMarkers.forEach((element) => {
           var infowindow = new google.maps.InfoWindow({
             content: `<div class="icon-container">` + `<h6 class="icon-title"> ${element.username}` + `<h6 class="icon-text">${element.email}</h6>` + `<h6 class="icon-text">${element.typeActivity}</h6>` +
-              `<h6 class="icon-text">${element.userType}</h6>` + `<h6 class="icon-text">${element.availability}</h6>` + `<h6 class="icon-text">${element.pricePerHour}€</h6></div>` + `<button class="waves-effect waves-light btn"><a href="/main/${element.username}">Go to the Profile</a></button>`
+              `<h6 class="icon-text">${element.userType}</h6>` + `<h6 class="icon-text">${element.availability}</h6>` + `<h6 class="icon-text">${element.pricePerHour}€</h6>` + `<button class="waves-effect waves-light btn"><a href="/main/${element.username}">Go to the Profile</a></button></div>`
           });
           element.addListener('click', () => {
             infowindow.open(map, element)
