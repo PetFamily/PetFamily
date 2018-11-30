@@ -13,7 +13,7 @@ const petSchema = new Schema({
   notes: { type: String },
   petPhoto: { type: String },
   petPath: { type: String }
-});
+ });
 
 
 const Pet = mongoose.model('Pet', petSchema);

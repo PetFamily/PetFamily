@@ -3,8 +3,8 @@
 <p>Name: {{user.username}}</p>
 <p>Email: {{user.email}}</p>
 <p>Availability: {{user.availability}}</p>
-<p>Price/hour: {{user.pricePerHour}}€</p>
-<p>Center description: {{user.centerDescription}}</p>
+<p>Price/hour: {{user.pricePerHour}}</p>
+<p>Information: {{user.centerDescription}}</p>
 <p>Activity: {{user.typeActivity}}</p>
 <button class="waves-effect waves-light btn"><a href="/profile">Edit Profile</a></button>
 
@@ -16,7 +16,7 @@
     <img class="pet-profile" src="{{this.petPath}}" alt=" {{this.name}}'s Photo'">
     <p>Name: {{this.name}}</p>
     <p>Age: {{this.age}}</p>
-    <p>Description:{{this.description}}</p>
+    <p>Information:{{this.description}}</p>
     <p>Notes: {{this.notes}}</p>
     <p>Is {{this.name}} vaccinated? {{this.vaccunationCompleted}}</p>
     <button type="submit" class=" waves-effect waves-light btn"><a href="/main/pets/{{this._id}}/edit">Edit this pet</a></button> <br>
