@@ -57,8 +57,8 @@ label {
   color: white; }
 
 .pet-profile {
-  width: 180px;
-  height: 180px;
+  width: 60%;
+  height: 40%;
   border-radius: 50%;
   opacity: 1.5; }
 
