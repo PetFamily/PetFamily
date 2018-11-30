@@ -130,6 +130,7 @@ mainRouter.get('/myprofile', (req, res) => {
 })
 mainRouter.get("/:username", (req, res, next) => {
   User.findOne({ username: req.params.username })
+  .populate("pets")
     .then(user => {
       res.render("client-profile", { user });
     });
