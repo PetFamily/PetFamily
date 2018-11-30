@@ -17,9 +17,10 @@
       <ul class="center hide-on-med-and-down">
         {{#if user}}
         <li><a href="/main">Home</a></li>
+        <li><a href="/main/myprofile">Go to Profile</a></li>
         <li><a href="/main/pets">Add pet</a></li>
         <li><a href="/auth/logout">Logout</a></li>
-        <a href="/main/myprofile"><img src="{{user.userPath}}" alt="photo" class="profile-pic"></a>
+        {{!-- <a href="/main/myprofile"><img src="{{user.userPath}}" alt="photo" class="profile-pic"></a> --}}
         {{else}}
         <h2 class="main-title">PetFamily</h2>
       </ul>
