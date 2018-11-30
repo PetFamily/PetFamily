@@ -1,4 +1,5 @@
 <h2>Edit your Pet's Profile</h2>
+<div class="form-center">
 <form action="/main/pets/{{pet._id}}/edit" method="POST" enctype="multipart/form-data">
   <label for="name">Pet Name</label>
   <input type="text" name="name" id="name" placeholder="{{pet.name}}"> <br><br>
@@ -22,9 +23,10 @@
     <option selected disabled> Choose One</option>
     <option value="true">Yes</option>
     <option value="false">No </option>
-  </select> <br><br>
+  </select> <br>
 
   <label for="petPhoto">Photo</label>
   <input type="file" name="petPhoto" id="petPhoto">
+    </div>
   <button class="waves-effect waves-light btn" type="submit">Save</button>
 </form>

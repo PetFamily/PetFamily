@@ -6,14 +6,10 @@
 <h3>Create New Location</h3>
 
 <form action="/main/new" method="POST">
-  <input type="text" name="userLocationName" placeholder="Name for your location" id="userLocationName">
+  <input type="text" name="userLocationName" placeholder="Name for your location" id="userLocationName" required>
   <input type="hidden" name="lat" id="lat">
   <input type="hidden" name="lng" id="lng">
-<<<<<<< HEAD
   <input id="pac-input" class="controls" type="text" placeholder="Enter your address">
-=======
-  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
->>>>>>> 3306a02d9380e3ceb19230630cca54b8f6a2e224
   <button class="waves-effect waves-light btn" type="submit">Save</button>
 </form>
 <div id="map"></div><br>
