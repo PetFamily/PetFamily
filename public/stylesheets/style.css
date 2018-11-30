@@ -45,7 +45,7 @@ label {
   width: 100%; }
 
 .responsive-img {
-  margin: 5vh auto;
+  margin: 1vh auto;
   display: block;
   width: 75%; }
 
@@ -56,7 +56,8 @@ label {
   color: white; }
 
 .pet-profile {
-  width: 300px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   opacity: 1.5; }
 
@@ -70,5 +71,13 @@ label {
 
 .user-profile:hover {
   opacity: .5; }
+
+.animal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
+
+.animal-child {
+  width: 33%; }
 
 /*# sourceMappingURL=style.css.map */

@@ -8,9 +8,9 @@ const uploadCloud = require("../config/cloudinary");
 mainRouter.get("/", checkComplete(), (req, res, next) => {
   User.find()
     .then(users => {
-      const address = users.map(({address, userLocationName, username, email, userType, availability, pricePerHour,typeActivity}) => {
-     
-         return {address, userLocationName, username, email, userType, availability, pricePerHour,typeActivity}
+      const address = users.map(({ address, userLocationName, username, email, userType, availability, pricePerHour, typeActivity, _id }) => {
+
+        return { address, userLocationName, username, email, userType, availability, pricePerHour, typeActivity, _id }
       });
       var JSONaddress = JSON.stringify({ address });
 
@@ -123,12 +123,18 @@ mainRouter.get('/pets/:id/delete', (req, res, next) => {
     .then(() => res.redirect(`/main/${req.user._id}`))
     .catch(err => next(err));
 });
-mainRouter.get("/:id", (req, res, next) => {
-  User.findById(req.params.id)
-    .populate('pets')
+mainRouter.get('/myprofile', (req, res) => {
+  console.log(req.user);
+
+  res.render('user-profile', { user: req.user })
+})
+mainRouter.get("/:username", (req, res, next) => {
+  User.findOne({ username: req.params.username })
     .then(user => {
-      res.render("user-profile", { user });
+      res.render("client-profile", { user });
     });
 });
+
+
 
 module.exports = mainRouter;

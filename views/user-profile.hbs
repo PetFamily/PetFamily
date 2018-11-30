@@ -9,19 +9,21 @@
 <button class="waves-effect waves-light btn"><a href="/profile">Edit Profile</a></button>
 
 <h4>My Pets</h4>
+<div class="animal">
 {{#each user.pets}}
-<div>
-  
-  <img class="pet-profile" src="{{this.petPath}}" alt=" {{this.name}}'s Photo'">
-  <p>Name: {{this.name}}</p>
-  <p>{{this.name}} is a {{this.type}}</p>
-  <p>Age: {{this.age}}</p>
-  <p>Description:{{this.description}}</p>
-  <p>Notes: {{this.notes}}</p>
-  <p>Is {{this.name}} vaccinated? {{this.vaccunationCompleted}}</p>
-  <button type="submit" class=" waves-effect waves-light btn"><a href="/main/pets/{{this._id}}/edit">Edit this pet</a></button>
-  <button type="submit" class=" waves-effect waves-light btn"><a href="/main/pets/{{this._id}}/delete">Remove this pet</a></button>
-</div>
-{{/each}}
 
+  <div class="animal-child">
+    <img class="pet-profile" src="{{this.petPath}}" alt=" {{this.name}}'s Photo'">
+    <p>Name: {{this.name}}</p>
+    <p>Age: {{this.age}}</p>
+    <p>Description:{{this.description}}</p>
+    <p>Notes: {{this.notes}}</p>
+    <p>Is {{this.name}} vaccinated? {{this.vaccunationCompleted}}</p>
+    <button type="submit" class=" waves-effect waves-light btn"><a href="/main/pets/{{this._id}}/edit">Edit this pet</a></button> <br>
+    <button type="submit" class=" waves-effect waves-light btn"><a href="/main/pets/{{this._id}}/delete">Remove this pet</a></button>
+  </div>
+
+
+{{/each}}
+</div>
 {{!-- <button class=" waves-effect waves-light btn"><a href="/main/pets/edit">Edit Pet Profile</a></button> --}}

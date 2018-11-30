@@ -12,8 +12,6 @@ const path = require('path');
 const session = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash = require("connect-flash");
-
-
 mongoose
   .connect(process.env.MONGO_URL, { useNewUrlParser: true })
   .then(x => {
@@ -58,9 +56,6 @@ hbs.registerHelper('ifUndefined', (value, options) => {
     return options.fn(this);
   }
 });
-
-
-
 
 // Enable authentication using session + passport
 app.use(session({

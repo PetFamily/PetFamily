@@ -1,13 +1,24 @@
-{{!-- <h1>PetFamily</h1> --}}
+{{!-- <h1>PetFamily</h1>
+<script src=“https://maps.googleapis.com/maps/api/js?key={{KEY}}&libraries=places&callback=startMap” async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{key}}"></script>
+
+--}}
 <h3>Create New Location</h3>
 
 <form action="/main/new" method="POST">
-  <input type="text" name="userLocationName" placeholder="New Location" id="userLocationName">
+  <input type="text" name="userLocationName" placeholder="Name for your location" id="userLocationName">
   <input type="hidden" name="lat" id="lat">
   <input type="hidden" name="lng" id="lng">
+<<<<<<< HEAD
+  <input id="pac-input" class="controls" type="text" placeholder="Enter your address">
+=======
+  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+>>>>>>> 3306a02d9380e3ceb19230630cca54b8f6a2e224
   <button class="waves-effect waves-light btn" type="submit">Save</button>
-</form> 
+</form>
 <div id="map"></div><br>
 
-<script src="https://maps.googleapis.com/maps/api/js?key={{key}}"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{key}}&libraries=places&callback=startMap" async defer></script>
+
 <script src="/javascripts/scriptNewLocation.js"></script>
